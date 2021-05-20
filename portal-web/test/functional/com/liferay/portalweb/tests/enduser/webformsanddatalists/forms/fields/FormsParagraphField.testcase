@@ -425,7 +425,6 @@ definition {
 		FormFields.editParagraphBody(content = "Test");
 
 		Form.editFieldLabelMetal(fieldValue = "Test Paragraph");
-
 		Form.save();
 
 		Click(locator1 = "Icon#BACK");
