@@ -610,13 +610,12 @@ definition {
 		}
 
 		task ("Add a Heading fragment to the first module of inner Grid") {
-
 			PageEditor.addElementToColumn(
 				collectionName = "Basic Components",
 				columnNumber = "1",
 				fragmentName = "Heading",
-				position = "2",
-				navTab = "Fragments");
+				navTab = "Fragments",
+				position = "2");
 		}
 
 		task ("Add a Button fragment to the second module of inner Grid") {
@@ -624,8 +623,8 @@ definition {
 				collectionName = "Basic Components",
 				columnNumber = "2",
 				fragmentName = "Button",
-				position = "2",
-				navTab = "Fragments");
+				navTab = "Fragments",
+				position = "2");
 		}
 
 		task ("Add a Paragraph fragment to the third module of inner Grid") {
@@ -633,8 +632,8 @@ definition {
 				collectionName = "Basic Components",
 				columnNumber = "3",
 				fragmentName = "Paragraph",
-				position = "2",
-				navTab = "Fragments");
+				navTab = "Fragments",
+				position = "2");
 		}
 
 		task ("View the ellipsis button is visible on topper of Heading fragment") {
