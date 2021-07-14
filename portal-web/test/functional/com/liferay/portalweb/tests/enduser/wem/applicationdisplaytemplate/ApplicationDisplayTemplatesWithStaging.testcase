@@ -54,6 +54,64 @@ definition {
 		}
 	}
 
+	@description = "This is for LPS-130051. Widget templates can be used to modify the look of a specific application."
+	@priority = "4"
+	test CustomWidgetTemplateWithLocalLiveStaging {
+		task ("Add a content page based on Blank") {
+			Staging.openStagingAdmin(siteURLKey = "test-site-name-staging");
+
+			JSONLayout.addPublicLayout(
+				groupName = "Test Site Name (Staging)",
+				layoutName = "Test Page Name",
+				site = "false",
+				type = "content");
+		}
+		task ("Add a Navigation Menu widget to content page") {
+			ContentPagesNavigator.openEditContentPage(
+				pageName = "Test Page Name",
+				siteName = "Test Site Name Staging");
+
+			PageEditor.addWidget(portletName = "Navigation Menu");
+		}
+		task ("Configure the Navigation Menu widget to use the List Menu Template") {
+			NavigationMenusWidget.gotoNavigationMenuWidgetConfig();
+
+			NavigationMenusWidget.selectDisplayTemplate(templateName = "List Menu");
+
+			Portlet.saveAndCloseConfig();
+		}
+		task ("Wait for auto save and Publish the content page") {
+			PageEditor.waitForAutoSave();
+
+			PageEditor.clickPublish();
+		}
+		task ("Navigate to the content page") {
+			ContentPagesNavigator.openViewContentPage(
+				pageName = "Test Page Name",
+				siteName = "Test Site Name Staging");
+		}
+		task ("View the widget template applied to Navigation Menu widget in staging site") {
+			AssertTextEquals(
+				locator1 = "ControlMenu#HEADING",
+				value1 = "Test Page Name");
+		}
+		task ("Publish to Live") {
+			Staging.gotoPublishToLive();
+
+			Staging.publishToLive();
+		}
+		task ("Navigate to the content page") {
+			ContentPagesNavigator.openViewContentPage(
+				pageName = "Test Page Name",
+				siteName = "Test Site Name Staging");
+		}
+		task ("View the widget template applied to Navigation Menu widget in live site") {
+			AssertTextEquals(
+				locator1 = "ControlMenu#HEADING",
+				value1 = "Test Page Name");
+		}
+	}
+
 	@description = "View the widget template applied to Categories Navigation in staging and live site."
 	@priority = "3"
 	test ViewWidgetTemplateAppliedToCategoriesNavigationInStagingAndLiveSite {
