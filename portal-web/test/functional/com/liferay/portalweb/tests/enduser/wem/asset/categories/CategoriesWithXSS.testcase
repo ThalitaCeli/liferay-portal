@@ -144,4 +144,41 @@ definition {
 		}
 	}
 
+    @description = "This is for LPS-132705."
+	@priority = "4"
+    @uitest
+	test ViewAssetCategories {
+		task ("Add a global category with XSS name in Topic") {
+			Category.openCategoriesAdmin(siteURLKey = "global");
+
+			Category.addCP(
+				categoryName = '''><img src=x onerror=alert()>''',
+				vocabularyName = "Topic");
+		}
+
+		task ("Navigate to Account Settings") {
+			UserBar.gotoDropdownItem(dropdownItem = "Account Settings");
+		}
+
+		task ("Select the Topic category") {
+			Click(locator1 = "Button#SELECT_CATEGORIES");
+
+			AssetCategorization.selectCategory(categoryName = '''><img src=x onerror=alert()>''');
+		}
+
+		task ("View the Category in Account Settings") {
+			AssertElementPresent(
+				key_categoryName = '''><img src=x onerror=alert()>''',
+				locator1 = "AssetCategorization#CATEGORY");
+		}
+		task ("Save change and Refresh") {
+			Button.clickSave();
+
+			Refresh();
+		}
+		task ("View the alert not shown") {
+			AssertAlertNotPresent();
+		}
+	}
+
 }
