@@ -144,9 +144,9 @@ definition {
 		}
 	}
 
-    @description = "This is for LPS-132705."
+	@description = "This is for LPS-132705."
 	@priority = "4"
-    @uitest
+	@uitest
 	test ViewAssetCategories {
 		task ("Add a global category with XSS name in Topic") {
 			Category.openCategoriesAdmin(siteURLKey = "global");
