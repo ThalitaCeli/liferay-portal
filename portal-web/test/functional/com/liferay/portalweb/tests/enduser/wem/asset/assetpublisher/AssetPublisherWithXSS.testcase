@@ -39,7 +39,6 @@ definition {
 		}
 	}
 
-
 	@description = "This is a test for LPS-124704. Asset Publisher view.jsp has potential XSS vulnerability."
 	@priority = "4"
 	@uitest
@@ -88,6 +87,5 @@ definition {
 			AssertAlertNotPresent();
 		}
 	}
-
 
 }
