@@ -196,7 +196,7 @@ definition {
 				dmDocumentTitle = "DM Title",
 				groupName = "Test Site Name");
 
-			Navigator.openWithAppendToBaseURL(urlAppend = "web/test-site-name/d/${fileEntryID}");
+			Navigator.openWithAppendToBaseURL(urlAppend = "web/test-site-name/d/${dmFileEntryID}");
 
 			AssertTextEquals(
 				locator1 = "ControlMenu#HEADING",
