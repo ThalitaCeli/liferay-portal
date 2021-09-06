@@ -26,6 +26,11 @@
 	<td></td>
 </tr>
 <tr>
+	<td>SCRIPT_FIELD_PROPERTIES</td>
+	<td>//*[contains(@class,'control-label') and contains(.,'${key_fieldName}')]</td>
+	<td></td>
+</tr>
+<tr>
 	<td>SCRIPT_UTIL</td>
 	<td>//div[contains(@class,'palette-section') and contains(@id,'util')]//ul/li/span[contains(@data-title,'${key_fieldName}')]</td>
 	<td></td>
