@@ -29,12 +29,33 @@ definition {
 	}
 
 	@description = "I can create a Virtual Instance with Default Initializer"
-	@ignore = "Test Stub"
+	@ignore = "true"
 	@priority = "4"
 	test AddVirtualInstanceWithDefaultInitializer {
+		task ("Add virtual instance able.com with a blank Initializar") {
+			PortalInstances.openVirtualInstancesAdmin();
 
-		// TODO Create the automation about the LPS-135077.
+			PortalInstances.addCP(
+				mailDomain = "www.able.com",
+				virtualHost = "www.able.com",
+				webId = "www.able.com");
+		}
 
+		task ("Go to new Virtual Instance") {
+			User.firstLoginUI(
+				password = "test",
+				specificURL = "http://www.able.com:8080",
+				userEmailAddress = "test@www.able.com");
+
+			Navigator.openSpecificURL(url = "http://www.able.com:8080");
+		}
+
+		task ("Assert the default Welcome Page is present") {
+			ContentPages.viewFragmentText(
+				fragmentName = "heading",
+				id = "element-text",
+				text = "Welcome to Liferay");
+		}
 	}
 
 	@description = "I can create a New Virtual Instance with the initializer"

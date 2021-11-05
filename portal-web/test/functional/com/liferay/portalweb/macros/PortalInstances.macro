@@ -28,6 +28,38 @@ definition {
 		PortletEntry.save();
 	}
 
+	macro addCPWithInitializer {
+		LexiconEntry.gotoAdd();
+
+		Type(
+			locator1 = "TextInput#WEB_ID",
+			value1 = "${webId}");
+
+		Type(
+			locator1 = "TextInput#VIRTUAL_HOST",
+			value1 = "${virtualHost}");
+
+		Type(
+			locator1 = "TextInput#MAIL_DOMAIN",
+			value1 = "${mailDomain}");
+
+		if ("${maxUsers}" == "true") {
+			Type(
+				locator1 = "TextInput#MAX_USERS",
+				value1 = "${maxUserNumber}");
+		}
+
+		if ("${portalInstanceActive}" == "false") {
+			Uncheck(locator1 = "Checkbox#ACTIVE");
+		}
+
+		Select(
+			locator1 = "OpenIDConnectLogin#OPENID_CONNECT_DROPDOWN_MENU",
+			value1 = "${initializerName}");
+
+		PortletEntry.save();
+	}
+
 	macro deactivatePortalInstance {
 		var key_virtualHost = "${virtualHost}";
 
